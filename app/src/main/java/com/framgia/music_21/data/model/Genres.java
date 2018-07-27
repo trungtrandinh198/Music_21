@@ -4,16 +4,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.ArrayList;
 
-public class Playlist implements Parcelable {
+public class Genres implements Parcelable {
     private String mId;
     private String mTitle;
     private String mBanner;
     private ArrayList<String> mArrayListIdSong;
 
-    public Playlist() {
+    public Genres() {
     }
 
-    public Playlist(String id, String title, String banner, ArrayList<String> arrayListIdSong) {
+    public Genres(String id, String title, String banner, ArrayList<String> arrayListIdSong) {
         mId = id;
         mTitle = title;
         mBanner = banner;
@@ -44,7 +44,7 @@ public class Playlist implements Parcelable {
         mBanner = banner;
     }
 
-    public static Creator<Playlist> getCREATOR() {
+    public static Creator<Genres> getCREATOR() {
         return CREATOR;
     }
 
@@ -56,22 +56,22 @@ public class Playlist implements Parcelable {
         mArrayListIdSong = arrayListIdSong;
     }
 
-    protected Playlist(Parcel in) {
+    protected Genres(Parcel in) {
         mId = in.readString();
         mTitle = in.readString();
         mBanner = in.readString();
         mArrayListIdSong = in.createStringArrayList();
     }
 
-    public static final Creator<Playlist> CREATOR = new Creator<Playlist>() {
+    public static final Creator<Genres> CREATOR = new Creator<Genres>() {
         @Override
-        public Playlist createFromParcel(Parcel in) {
-            return new Playlist(in);
+        public Genres createFromParcel(Parcel in) {
+            return new Genres(in);
         }
 
         @Override
-        public Playlist[] newArray(int size) {
-            return new Playlist[size];
+        public Genres[] newArray(int size) {
+            return new Genres[size];
         }
     };
 

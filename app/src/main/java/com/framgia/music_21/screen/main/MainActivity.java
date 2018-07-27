@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity
         mFragmentManager = getFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.add(R.id.fragment_content, mHomeFragment);
+        mFragmentTransaction.commit();
     }
 
     @Override
