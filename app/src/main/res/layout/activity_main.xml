@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    />
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:background="@color/color_orange_90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <FrameLayout
+            android:id="@+id/fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraint_layout_bottom"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            />
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:background="@color/color_orange_90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <ImageView
+                android:id="@+id/image_avatar_play_bar"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_50"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginStart="@dimen/dp_10"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                />
+            <TextView
+                android:id="@+id/txt_name_song_play_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintLeft_toRightOf="@+id/image_avatar_play_bar"
+                app:layout_constraintRight_toLeftOf="@id/image_play_pause_bar"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <TextView
+                android:id="@+id/text_singer_play_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/image_avatar_play_bar"
+                app:layout_constraintRight_toLeftOf="@id/image_play_pause_bar"
+                app:layout_constraintTop_toBottomOf="@+id/txt_name_song_play_bar"
+                />
+
+            <ImageView
+                android:id="@+id/image_play_pause_bar"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/color_orange_90"
+        android:fitsSystemWindows="true"
+        app:itemIconTint="@color/color_white"
+        app:itemTextColor="@color/color_white"
+        app:menu="@menu/activity_main_drawer"
+        />
+</android.support.v4.widget.DrawerLayout>
