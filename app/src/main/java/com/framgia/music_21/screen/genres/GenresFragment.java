@@ -1,4 +1,4 @@
-package com.framgia.music_21.screen.home;
+package com.framgia.music_21.screen.genres;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,12 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.framgia.music_21.R;
 
-public class HomeFragment extends Fragment implements HomeContact.View {
-
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
-        return fragment;
-    }
+public class GenresFragment extends Fragment {
 
     @Nullable
     @Override
@@ -27,19 +22,9 @@ public class HomeFragment extends Fragment implements HomeContact.View {
     }
 
     private void initView(View view) {
-        RecyclerView recyclerViewGenres = view.findViewById(R.id.recyclerview_genres_home);
+        RecyclerView recyclerViewGenres = view.findViewById(R.id.recyclerview_genres_genres);
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewGenres.setLayoutManager(linearLayoutManager);
-    }
-
-    @Override
-    public void showSongSubject() {
-
-    }
-
-    @Override
-    public void showGenresSubject() {
-
     }
 }
