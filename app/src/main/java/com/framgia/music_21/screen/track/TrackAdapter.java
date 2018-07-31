@@ -1,4 +1,4 @@
-package com.framgia.music_21.track;
+package com.framgia.music_21.screen.track;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

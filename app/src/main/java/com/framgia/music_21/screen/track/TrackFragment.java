@@ -1,4 +1,4 @@
-package com.framgia.music_21.track;
+package com.framgia.music_21.screen.track;
 
 import android.app.Fragment;
 import android.os.Bundle;
