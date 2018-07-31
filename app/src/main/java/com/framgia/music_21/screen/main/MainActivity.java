@@ -13,11 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.framgia.music_21.R;
-import com.framgia.music_21.data.model.Genres;
 import com.framgia.music_21.screen.genres.GenresFragment;
-import com.framgia.music_21.screen.home.HomeContact;
 import com.framgia.music_21.screen.home.HomeFragment;
-import com.framgia.music_21.track.TrackFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
