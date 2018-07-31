@@ -3,7 +3,7 @@ package com.framgia.music_21.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Tracks implements Parcelable {
+public class Track implements Parcelable {
     private String mId;
     private String mTitle;
     private String mUserId;
@@ -14,10 +14,10 @@ public class Tracks implements Parcelable {
     private String mStreamUlr;
     private String mDownLoadUrl;
 
-    public Tracks() {
+    public Track() {
     }
 
-    public Tracks(String id, String title, String userId, String uir, String username,
+    public Track(String id, String title, String userId, String uir, String username,
             String avatarUser, String playTrackCount, String streamUlr, String downLoadUrl) {
         mId = id;
         mTitle = title;
@@ -102,11 +102,11 @@ public class Tracks implements Parcelable {
         mDownLoadUrl = downLoadUrl;
     }
 
-    public static Creator<Tracks> getCREATOR() {
+    public static Creator<Track> getCREATOR() {
         return CREATOR;
     }
 
-    protected Tracks(Parcel in) {
+    protected Track(Parcel in) {
         mId = in.readString();
         mTitle = in.readString();
         mUserId = in.readString();
@@ -118,15 +118,15 @@ public class Tracks implements Parcelable {
         mDownLoadUrl = in.readString();
     }
 
-    public static final Creator<Tracks> CREATOR = new Creator<Tracks>() {
+    public static final Creator<Track> CREATOR = new Creator<Track>() {
         @Override
-        public Tracks createFromParcel(Parcel in) {
-            return new Tracks(in);
+        public Track createFromParcel(Parcel in) {
+            return new Track(in);
         }
 
         @Override
-        public Tracks[] newArray(int size) {
-            return new Tracks[size];
+        public Track[] newArray(int size) {
+            return new Track[size];
         }
     };
 

@@ -1,5 +1,6 @@
 package com.framgia.music_21.screen.main;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -12,7 +13,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.framgia.music_21.R;
+import com.framgia.music_21.data.model.Genres;
+import com.framgia.music_21.screen.genres.GenresFragment;
+import com.framgia.music_21.screen.home.HomeContact;
 import com.framgia.music_21.screen.home.HomeFragment;
+import com.framgia.music_21.track.TrackFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction = null;
     private HomeFragment mHomeFragment;
+    private GenresFragment mGenresFragment;
 
     public MainActivity() {
     }
@@ -43,6 +49,7 @@ public class MainActivity extends AppCompatActivity
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mHomeFragment = new HomeFragment();
+        mGenresFragment = new GenresFragment();
 
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
@@ -84,10 +91,12 @@ public class MainActivity extends AppCompatActivity
             case R.id.item_singer:
                 break;
             case R.id.item_home:
+                showFragment(mHomeFragment);
                 break;
             case R.id.item_download:
                 break;
             case R.id.item_genres:
+                showFragment(mGenresFragment);
                 break;
             case R.id.item_ofline:
                 break;
@@ -96,5 +105,11 @@ public class MainActivity extends AppCompatActivity
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showFragment(Fragment fragment) {
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        mFragmentTransaction.replace(R.id.fragment_content, fragment);
+        mFragmentTransaction.commit();
     }
 }
