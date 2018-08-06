@@ -44,8 +44,8 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
 
         ViewHolder(View itemView) {
             super(itemView);
-            mTextViewNameTrack = itemView.findViewById(R.id.txt_name_track);
-            mTextViewSinger = itemView.findViewById(R.id.txt_name_singer_track);
+            mTextViewNameTrack = itemView.findViewById(R.id.text_name_track);
+            mTextViewSinger = itemView.findViewById(R.id.text_name_singer_track);
             mImageViewAvatarTrack = itemView.findViewById(R.id.image_avatar_track);
         }
 
