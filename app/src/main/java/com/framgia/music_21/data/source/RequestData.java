@@ -4,5 +4,4 @@ public interface RequestData<T> {
     void onSuccess(T data);
 
     void onFail(Exception e);
-
 }

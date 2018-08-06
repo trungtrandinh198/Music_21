@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.framgia.music_21.R;
 import com.framgia.music_21.data.repository.TrackRepository;
 
+
 public class GenresFragment extends Fragment implements GenresContract.View {
     private GenresContract.View mView;
     private TrackRepository mTrackRepository;
