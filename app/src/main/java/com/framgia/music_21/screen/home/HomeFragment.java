@@ -8,12 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.framgia.music_21.R;
-import com.framgia.music_21.data.model.Track;
-import com.framgia.music_21.data.repository.TrackRepository;
-import com.framgia.music_21.data.source.RequestData;
-import com.framgia.music_21.data.source.remote.ParseDataSources;
 
 public class HomeFragment extends Fragment implements HomeContact.View {
 
