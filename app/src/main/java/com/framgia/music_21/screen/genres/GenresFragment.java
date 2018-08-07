@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.framgia.music_21.R;
+import com.framgia.music_21.data.repository.TrackRepository;
 
-public class GenresFragment extends Fragment implements GenresContract.View{
+public class GenresFragment extends Fragment implements GenresContract.View {
+    private GenresContract.View mView;
+    private TrackRepository mTrackRepository;
 
     @Nullable
     @Override
@@ -27,4 +30,6 @@ public class GenresFragment extends Fragment implements GenresContract.View{
                 new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewGenres.setLayoutManager(linearLayoutManager);
     }
+
+
 }
