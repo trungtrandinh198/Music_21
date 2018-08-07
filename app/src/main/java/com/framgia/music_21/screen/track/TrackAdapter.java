@@ -11,15 +11,10 @@ import com.bumptech.glide.Glide;
 import com.framgia.music_21.R;
 import com.framgia.music_21.data.model.Track;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> {
-    private ArrayList<Track> mTracks;
-    private Context mContext;
-
-    public TrackAdapter(Context context, ArrayList<Track> tracks) {
-        mContext = context;
-        mTracks = tracks;
-    }
+    private List<Track> mTracks = new ArrayList<>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,6 +26,14 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.onBindView(mTracks.get(position));
+    }
+
+    public void addTrack(List<Track> tracks) {
+        if (tracks == null) {
+            return;
+        }
+        mTracks.addAll(tracks);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -53,7 +56,9 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
             mTextViewNameTrack.setText(track.getTitle());
             mTextViewSinger.setText(track.getUsername());
             if (track.getAvatarUser() != null) {
-                Glide.with(mContext).load(track.getAvatarUser()).into(mImageViewAvatarTrack);
+                Glide.with(itemView.getContext())
+                        .load(track.getAvatarUser())
+                        .into(mImageViewAvatarTrack);
             }
         }
     }
