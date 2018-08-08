@@ -1,7 +1,7 @@
 package com.framgia.music_21.data.source.remote;
 
-import com.framgia.music_21.data.model.TrackList;
 import com.framgia.music_21.data.model.Track;
+import com.framgia.music_21.data.model.TrackList;
 import com.framgia.music_21.data.source.RequestData;
 import com.framgia.music_21.data.source.TempData;
 import com.framgia.music_21.data.source.TrackDataSources;
@@ -40,14 +40,23 @@ public class TrackRemoteDataSources implements TrackDataSources.RemoteDataSource
 
     private Track getTrackJson(String stringJson) {
         Track track = new Track();
+        Track.Builder builder = new Track.Builder();
+
         try {
             JSONObject jsonObject = new JSONObject(stringJson);
-            track.setUserId(jsonObject.getString(Constaint.ID));
-            track.setAvatarUser(jsonObject.getString(Constaint.AVATAR_USER));
-            track.setTitle(jsonObject.getString(Constaint.TITLE));
-            track.setAvatarUser(
-                    jsonObject.getJSONObject(Constaint.USER).getString(Constaint.AVATAR_USER));
-            track.setStreamUlr(jsonObject.getString(Constaint.STREAM_ULR));
+            track = builder.setId(String.valueOf(jsonObject.getInt(Constaint.ID)))
+                    .setTitle(jsonObject.getString(Constaint.TITLE))
+                    .setTitle(jsonObject.getString(Constaint.TITLE))
+                    .setPlayTrackCount(jsonObject.getJSONObject(Constaint.USER)
+                            .getString(Constaint.AVATAR_USER))
+                    .setAvatarUser(jsonObject.getJSONObject(Constaint.USER)
+                            .getString(Constaint.AVATAR_USER))
+                    .setUserId(jsonObject.getJSONObject(Constaint.USER).getString(Constaint.ID))
+                    .setUsername(
+                            jsonObject.getJSONObject(Constaint.USER).getString(Constaint.USER_NAME))
+                    .setDownLoadUrl(jsonObject.getString(Constaint.DOWNLOAD_URL))
+                    .setStreamUlr(jsonObject.getString(Constaint.STREAM_ULR))
+                    .buid();
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -19,8 +19,13 @@ public class Constaint {
     public static final String UIR = "uir";
     public static final String USER_NAME = "username";
     public static final String AVATAR_USER = "avatar_url";
-    public static final String PLAY_TRACK_COUNT = "playTrackCount";
+    public static final String PLAY_TRACK_COUNT = "reposts_count";
     public static final String STREAM_ULR = "stream_url";
-    public static final String DOWNLOAD_URL = "downLoadUrl";
+    public static final String DOWNLOAD_URL = "download_url";
     public static final String USER = "user";
+    //genres
+    public static final String MUSIC = "music";
+    public static final String ROCK = "rock";
+    public static final String COUNTRY = "contry";
+    public static final String HIPHOP = "hip hop";
 }
