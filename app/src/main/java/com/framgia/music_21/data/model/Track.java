@@ -30,6 +30,18 @@ public class Track implements Parcelable {
         mDownLoadUrl = downLoadUrl;
     }
 
+    private Track(Builder builder) {
+        mId = builder.mId;
+        mTitle = builder.mTitle;
+        mUserId = builder.mUserId;
+        mUir = builder.mUir;
+        mUsername = builder.mUsername;
+        mAvatarUser = builder.mAvatarUser;
+        mPlayTrackCount = builder.mPlayTrackCount;
+        mStreamUlr = builder.mStreamUlr;
+        mDownLoadUrl = builder.mDownLoadUrl;
+    }
+
     public String getTitle() {
         return mTitle;
     }
@@ -146,5 +158,70 @@ public class Track implements Parcelable {
         parcel.writeString(mPlayTrackCount);
         parcel.writeString(mStreamUlr);
         parcel.writeString(mDownLoadUrl);
+    }
+
+    public static class Builder {
+        private String mId;
+        private String mTitle;
+        private String mUserId;
+        private String mUir;
+        private String mUsername;
+        private String mAvatarUser;
+        private String mPlayTrackCount;
+        private String mStreamUlr;
+        private String mDownLoadUrl;
+
+        public Builder() {
+
+        }
+
+        public Track buid() {
+            return new Track(this);
+        }
+
+        public Builder setId(String id) {
+            mId = id;
+            return this;
+        }
+
+        public Builder setTitle(String title) {
+            mTitle = title;
+            return this;
+        }
+
+        public Builder setUserId(String userId) {
+            mUserId = userId;
+            return this;
+        }
+
+        public Builder setUir(String uir) {
+            mUir = uir;
+            return this;
+        }
+
+        public Builder setUsername(String username) {
+            mUsername = username;
+            return this;
+        }
+
+        public Builder setAvatarUser(String avatarUser) {
+            mAvatarUser = avatarUser;
+            return this;
+        }
+
+        public Builder setPlayTrackCount(String playTrackCount) {
+            mPlayTrackCount = playTrackCount;
+            return this;
+        }
+
+        public Builder setStreamUlr(String streamUlr) {
+            mStreamUlr = streamUlr;
+            return this;
+        }
+
+        public Builder setDownLoadUrl(String downLoadUrl) {
+            mDownLoadUrl = downLoadUrl;
+            return this;
+        }
     }
 }

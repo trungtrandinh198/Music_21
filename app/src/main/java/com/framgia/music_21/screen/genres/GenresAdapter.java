@@ -1,6 +1,5 @@
 package com.framgia.music_21.screen.genres;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +10,10 @@ import com.bumptech.glide.Glide;
 import com.framgia.music_21.R;
 import com.framgia.music_21.data.model.Genres;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder> {
-    private ArrayList<Genres> mGenres;
-    private Context mContext;
-
-    public GenresAdapter(Context context, ArrayList<Genres> genres) {
-        mContext = context;
-        mGenres = genres;
-    }
+    private List<Genres> mGenres = new ArrayList<>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,6 +25,14 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.onBindView(mGenres.get(position));
+    }
+
+    public void updateData(List<Genres> genres) {
+        if (genres == null) {
+            return;
+        }
+        mGenres.addAll(genres);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -51,7 +53,9 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder
         void onBindView(Genres genres) {
             mTextViewNameGenres.setText(genres.getTitle());
             if (genres.getBanner() != null) {
-                Glide.with(mContext).load(genres.getBanner()).into(mImageViewBannerGenres);
+                Glide.with(itemView.getContext())
+                        .load(genres.getBanner())
+                        .into(mImageViewBannerGenres);
             }
         }
     }
