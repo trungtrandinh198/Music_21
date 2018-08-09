@@ -28,4 +28,15 @@ public class Constaint {
     public static final String ROCK = "rock";
     public static final String COUNTRY = "contry";
     public static final String HIPHOP = "hip hop";
+    public static final String HOT = "hot";
+    //image
+    public static final String IMAGE_MUSIC =
+            "https://blog.britishmuseum.org/wp-content/uploads/2018/04/xEATW-ID.jpg.pagespeed.ic"
+                    + ".zm87HyfrqF.webp";
+    public static final String IMAGE_HOT =
+            "https://nbrdesignstudio.com/wp-content/uploads/2015/08/hotmusic.png";
+    public static final String IMAGE_COUTRY =
+            "https://i.ytimg.com/vi/BmcqOEA4rNg/maxresdefault.jpg";
+    public static final String IMAGE_HIPHOP =
+            "http://www.hiphopinternational.com/wp-content/uploads/2017/11/S-RANK-USA.jpg";
 }

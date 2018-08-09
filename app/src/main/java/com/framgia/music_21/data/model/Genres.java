@@ -2,30 +2,17 @@ package com.framgia.music_21.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.ArrayList;
 
 public class Genres implements Parcelable {
-    private String mId;
     private String mTitle;
     private String mBanner;
-    private ArrayList<String> mArrayListIdSong;
 
     public Genres() {
     }
 
-    public Genres(String id, String title, String banner, ArrayList<String> arrayListIdSong) {
-        mId = id;
+    public Genres(String title, String banner) {
         mTitle = title;
         mBanner = banner;
-        mArrayListIdSong = arrayListIdSong;
-    }
-
-    public String getId() {
-        return mId;
-    }
-
-    public void setId(String id) {
-        mId = id;
     }
 
     public String getTitle() {
@@ -48,19 +35,9 @@ public class Genres implements Parcelable {
         return CREATOR;
     }
 
-    public ArrayList<String> getArrayListIdSong() {
-        return mArrayListIdSong;
-    }
-
-    public void setArrayListIdSong(ArrayList<String> arrayListIdSong) {
-        mArrayListIdSong = arrayListIdSong;
-    }
-
     protected Genres(Parcel in) {
-        mId = in.readString();
         mTitle = in.readString();
         mBanner = in.readString();
-        mArrayListIdSong = in.createStringArrayList();
     }
 
     public static final Creator<Genres> CREATOR = new Creator<Genres>() {
@@ -82,9 +59,7 @@ public class Genres implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(mId);
         parcel.writeString(mTitle);
         parcel.writeString(mBanner);
-        parcel.writeStringList(mArrayListIdSong);
     }
 }

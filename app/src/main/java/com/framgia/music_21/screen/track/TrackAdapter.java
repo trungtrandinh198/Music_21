@@ -36,6 +36,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         if (tracks == null) {
             return;
         }
+        mTracks.clear();
         mTracks.addAll(tracks);
         notifyDataSetChanged();
     }

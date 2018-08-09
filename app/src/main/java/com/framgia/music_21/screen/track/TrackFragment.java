@@ -11,10 +11,11 @@ import com.framgia.music_21.R;
 import com.framgia.music_21.data.model.Track;
 import com.framgia.music_21.data.repository.TrackRepository;
 import com.framgia.music_21.data.source.remote.TrackRemoteDataSources;
-import com.framgia.music_21.utils.Constaint;
 import java.util.List;
 
 public class TrackFragment extends Fragment implements TrackContract.View {
+
+    private static final String ARGUMENT_GENRES = "ARGUMENT_GENRES";
     private TrackAdapter mTrackAdapter;
 
     @Nullable
@@ -23,17 +24,29 @@ public class TrackFragment extends Fragment implements TrackContract.View {
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_track, container, false);
         initView(view);
+        initData();
         return view;
+    }
+
+    public static TrackFragment getInstance(String genre) {
+        TrackFragment trackFragment = new TrackFragment();
+        Bundle args = new Bundle();
+        args.putString(ARGUMENT_GENRES, genre);
+        trackFragment.setArguments(args);
+        return trackFragment;
     }
 
     private void initView(View view) {
         RecyclerView recyclerViewTracks = view.findViewById(R.id.recyclerview_track_track);
+        mTrackAdapter = new TrackAdapter();
+        recyclerViewTracks.setAdapter(mTrackAdapter);
+    }
+
+    private void initData() {
         TrackRepository trackRepository =
                 TrackRepository.getsInstance(TrackRemoteDataSources.getInstance());
         TrackPresenter trackPresenter = new TrackPresenter(this, trackRepository);
-        trackPresenter.getTrackByGenres(Constaint.MUSIC);
-        mTrackAdapter = new TrackAdapter();
-        recyclerViewTracks.setAdapter(mTrackAdapter);
+        trackPresenter.getTrackByGenres(getArguments().getString(ARGUMENT_GENRES));
     }
 
     @Override

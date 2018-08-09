@@ -14,12 +14,17 @@ import java.util.List;
 
 public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder> {
     private List<Genres> mGenres = new ArrayList<>();
+    private ItemClickListener mItemClickListener;
+
+    GenresAdapter(ItemClickListener itemClickListener) {
+        mItemClickListener = itemClickListener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_genres, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mItemClickListener);
     }
 
     @Override
@@ -31,6 +36,7 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder
         if (genres == null) {
             return;
         }
+        mGenres.clear();
         mGenres.addAll(genres);
         notifyDataSetChanged();
     }
@@ -40,14 +46,17 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder
         return mGenres != null ? mGenres.size() : 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView mImageViewBannerGenres;
         private TextView mTextViewNameGenres;
+        private ItemClickListener mItemClickListener;
 
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView, ItemClickListener itemClickListener) {
             super(itemView);
             mTextViewNameGenres = itemView.findViewById(R.id.txt_name_genres);
             mImageViewBannerGenres = itemView.findViewById(R.id.img_banner_genres);
+            mItemClickListener = itemClickListener;
+            itemView.setOnClickListener(this);
         }
 
         void onBindView(Genres genres) {
@@ -57,6 +66,11 @@ public class GenresAdapter extends RecyclerView.Adapter<GenresAdapter.ViewHolder
                         .load(genres.getBanner())
                         .into(mImageViewBannerGenres);
             }
+        }
+
+        @Override
+        public void onClick(View view) {
+            mItemClickListener.onItemClicked(getAdapterPosition());
         }
     }
 }
