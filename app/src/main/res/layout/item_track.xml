@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_5"
-        android:textSize="@dimen/sp_24"
+        android:textSize="@dimen/sp_16"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/image_avatar_track"
         app:layout_constraintTop_toTopOf="parent"
