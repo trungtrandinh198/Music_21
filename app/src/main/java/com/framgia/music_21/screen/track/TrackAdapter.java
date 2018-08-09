@@ -14,12 +14,17 @@ import java.util.List;
 
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> {
     private List<Track> mTracks = new ArrayList<>();
+    private ItemClickListener mItemClickListener;
+
+    TrackAdapter(ItemClickListener itemClickListener) {
+        mItemClickListener = itemClickListener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_track, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mItemClickListener);
     }
 
     @Override
@@ -41,15 +46,18 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView mImageViewAvatarTrack;
         private TextView mTextViewNameTrack, mTextViewSinger;
+        ItemClickListener mItemClickListener;
 
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView, ItemClickListener itemClickListener) {
             super(itemView);
             mTextViewNameTrack = itemView.findViewById(R.id.text_name_track);
             mTextViewSinger = itemView.findViewById(R.id.text_name_singer_track);
             mImageViewAvatarTrack = itemView.findViewById(R.id.image_avatar_track);
+            mItemClickListener = itemClickListener;
+            itemView.setOnClickListener(this);
         }
 
         void onBindView(Track track) {
@@ -60,6 +68,11 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
                         .load(track.getAvatarUser())
                         .into(mImageViewAvatarTrack);
             }
+        }
+
+        @Override
+        public void onClick(View view) {
+            mItemClickListener.onItemClicked(getAdapterPosition());
         }
     }
 }
