@@ -1,7 +1,6 @@
 package com.framgia.music_21.utils;
 
 import com.framgia.music_21.BuildConfig;
-import java.security.PublicKey;
 
 public class Constaint {
     public static final String ULR = "http://api.soundcloud.com/";
