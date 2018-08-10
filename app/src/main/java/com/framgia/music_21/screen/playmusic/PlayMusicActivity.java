@@ -30,6 +30,7 @@ public class PlayMusicActivity extends AppCompatActivity implements View.OnClick
     private static final String PATH_MP3 = ".mp3";
 
     private PlayTrackServices mPlayTrackServices;
+    private boolean mIsPlaying;
     private TextView mTextViewTitle, mTextViewUser;
     private ImageView mImageViewAvatar, mImageViewPlay, mImageViewBack, mImageViewPause,
             mImageViewExit, mImageViewNext, mImageViewDowload;
@@ -78,6 +79,7 @@ public class PlayMusicActivity extends AppCompatActivity implements View.OnClick
         mTextViewTitle.setText(mPlayTrackServices.getTitle());
         mTextViewUser.setText(mPlayTrackServices.getUser());
         Glide.with(this).load(mPlayTrackServices.getAvatar()).into(mImageViewAvatar);
+        mImageViewPlay.setImageResource(R.drawable.ic_play);
     }
 
     public void getData() {
@@ -96,8 +98,12 @@ public class PlayMusicActivity extends AppCompatActivity implements View.OnClick
                 playTrack();
                 break;
             case R.id.img_backsong:
+                setView();
+                mPlayTrackServices.previousSong();
                 break;
             case R.id.img_nextsong:
+                setView();
+                mPlayTrackServices.nextSong();
                 break;
             case R.id.img_download:
                 downLoad(mPlayTrackServices.ulrDownload());
@@ -111,7 +117,15 @@ public class PlayMusicActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void playTrack() {
-        mPlayTrackServices.playMusic();
+        if (!mPlayTrackServices.isPlaying()) {
+            mPlayTrackServices.playMusic();
+            mImageViewPlay.setImageResource(R.drawable.ic_pause);
+            mIsPlaying = true;
+        } else {
+            mPlayTrackServices.pauseMusic();
+            mImageViewPlay.setImageResource(R.drawable.ic_play);
+            mIsPlaying = false;
+        }
     }
 
     private void downLoad(String url) {
@@ -124,6 +138,7 @@ public class PlayMusicActivity extends AppCompatActivity implements View.OnClick
         request.setDestinationUri(Uri.parse(PATH_DOWNLOAD + mTextViewTitle.getText()));
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,
                 PATH + mTextViewTitle.getText() + PATH_MP3);
+        assert downloadManager != null;
         Long reference = downloadManager.enqueue(request);
     }
 }

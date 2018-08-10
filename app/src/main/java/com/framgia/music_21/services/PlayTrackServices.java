@@ -47,7 +47,7 @@ public class PlayTrackServices extends Service implements MediaPlayer.OnPrepared
             mMediaPlayer.release();
         }
         mTrackList = intent.getParcelableArrayListExtra(Constaint.ARGUMENT_TRACK);
-        mPosition = intent.getIntExtra(Constaint.ARGUMENT_POSITION,0);
+        mPosition = intent.getIntExtra(Constaint.ARGUMENT_POSITION, 0);
         if (mTrackList != null) initPlayTrack();
         return START_STICKY;
     }
@@ -59,6 +59,7 @@ public class PlayTrackServices extends Service implements MediaPlayer.OnPrepared
         try {
             mMediaPlayer.setDataSource(
                     mTrackList.get(mPosition).getStreamUlr() + Constaint.CLIENT_ID);
+            mMediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
             stopSelf();
@@ -78,25 +79,39 @@ public class PlayTrackServices extends Service implements MediaPlayer.OnPrepared
     }
 
     public void playMusic() {
-
         mMediaPlayer.start();
     }
 
-    public void stopMusic() {
-        if (mMediaPlayer == null) return;
-        if (mMediaPlayer.isPlaying()) mMediaPlayer.stop();
+    public boolean isPlaying() {
+        return mMediaPlayer.isPlaying();
     }
 
     public void pauseMusic() {
-        if (mMediaPlayer.isPlaying()) mMediaPlayer.pause();
-    }
-
-    public void resumeMusic() {
-        if (mMediaPlayer.isPlaying()) mMediaPlayer.start();
+        mMediaPlayer.pause();
     }
 
     public String ulrDownload() {
         return mTrackList.get(mPosition).getDownLoadUrl() + Constaint.CLIENT_ID;
+    }
+
+    public void nextSong() {
+        if (mPosition == (mTrackList.size() - 1)) {
+            mPosition = 0;
+        } else {
+            mPosition++;
+        }
+        mMediaPlayer.reset();
+        initPlayTrack();
+    }
+
+    public void previousSong() {
+        if (mPosition == 0) {
+            mPosition = (mTrackList.size() - 1);
+        } else {
+            mPosition--;
+        }
+        mMediaPlayer.reset();
+        initPlayTrack();
     }
 
     public class TrackBinder extends Binder {
