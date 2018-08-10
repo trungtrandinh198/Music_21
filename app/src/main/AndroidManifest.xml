@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".screen.playmusic.PlayMusicActivity"/>
+
+        <service
+            android:name=".services.PlayTrackServices"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

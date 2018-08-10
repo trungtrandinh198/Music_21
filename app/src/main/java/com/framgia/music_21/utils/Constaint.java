@@ -1,6 +1,7 @@
 package com.framgia.music_21.utils;
 
 import com.framgia.music_21.BuildConfig;
+import java.security.PublicKey;
 
 public class Constaint {
     public static final String ULR = "http://api.soundcloud.com/";
@@ -39,4 +40,7 @@ public class Constaint {
             "https://i.ytimg.com/vi/BmcqOEA4rNg/maxresdefault.jpg";
     public static final String IMAGE_HIPHOP =
             "http://www.hiphopinternational.com/wp-content/uploads/2017/11/S-RANK-USA.jpg";
+    public static final String ARGUMENT_POSITION = "ARGUMENT_POSITION";
+    public static final String EXTRAS_SONG = "EXTRAS_SONG";
+    public static final String ARGUMENT_TRACK = "ARGUMENT_TRACK";
 }
