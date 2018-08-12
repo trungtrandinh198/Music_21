@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_orange_40"
     >
+    <TextView
+        android:id="@+id/text_trackhot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_track_hot"
+        android:textSize="@dimen/sp_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_genres_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/dp_40"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="@+id/text_trackhot"
         />
 </android.support.constraint.ConstraintLayout>

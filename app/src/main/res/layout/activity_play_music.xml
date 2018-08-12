@@ -71,6 +71,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_avataSong"
         />
+    <TextView
+        android:id="@+id/text_timestart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_35"
+        app:layout_constraintBottom_toTopOf="@id/seekbar_timeline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <TextView
+        android:id="@+id/text_timeend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_35"
+        app:layout_constraintBottom_toTopOf="@id/seekbar_timeline"
+        app:layout_constraintRight_toRightOf="parent"
+        />
     <SeekBar
         android:id="@+id/seekbar_timeline"
         android:layout_width="match_parent"

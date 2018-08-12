@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayTrackServices extends Service implements MediaPlayer.OnPreparedListener {
-    private MediaPlayer mMediaPlayer;
+    public MediaPlayer mMediaPlayer;
     private List<Track> mTrackList;
     private final IBinder mIBinder = new TrackBinder();
     private int mPosition;
