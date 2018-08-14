@@ -16,7 +16,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
     private List<Track> mTracks = new ArrayList<>();
     private ItemClickListener mItemClickListener;
 
-    TrackAdapter(ItemClickListener itemClickListener) {
+    public TrackAdapter(ItemClickListener itemClickListener) {
         mItemClickListener = itemClickListener;
     }
 

@@ -13,4 +13,5 @@
     <string name="singer">Singer</string>
     <string name="music_offline">Music Offline</string>
     <string name="dowlnoad">Download</string>
+    <string name="text_track_hot">Track Hot</string>
 </resources>
