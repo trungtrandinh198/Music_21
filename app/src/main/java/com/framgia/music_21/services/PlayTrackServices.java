@@ -1,5 +1,7 @@
 package com.framgia.music_21.services;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +12,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import com.framgia.music_21.R;
 import com.framgia.music_21.data.model.Track;
+import com.framgia.music_21.screen.main.MainActivity;
 import com.framgia.music_21.utils.Constaint;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,7 +55,7 @@ public class PlayTrackServices extends Service implements MediaPlayer.OnPrepared
         mTrackList = intent.getParcelableArrayListExtra(Constaint.ARGUMENT_TRACK);
         mPosition = intent.getIntExtra(Constaint.ARGUMENT_POSITION, 0);
         if (mTrackList != null) initPlayTrack();
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     public void initPlayTrack() {
@@ -65,6 +70,22 @@ public class PlayTrackServices extends Service implements MediaPlayer.OnPrepared
             e.printStackTrace();
             stopSelf();
         }
+        startForeground(1, initForegroundService());
+    }
+
+    public Notification initForegroundService() {
+        Notification notification;
+        Intent notitificationInten = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notitificationInten, 0);
+        notification =
+                new NotificationCompat.Builder(this).setContentTitle(getString(R.string.app_name))
+                        .setAutoCancel(true)
+                        .setSmallIcon(R.drawable.logo)
+                        .setContentTitle(mTrackList.get(mPosition).getTitle())
+                        .setContentIntent(pendingIntent)
+                        .setWhen(System.currentTimeMillis())
+                        .build();
+        return notification;
     }
 
     public String getTitle() {
@@ -92,7 +113,7 @@ public class PlayTrackServices extends Service implements MediaPlayer.OnPrepared
     }
 
     public String ulrDownload() {
-        return mTrackList.get(mPosition).getDownLoadUrl() + Constaint.CLIENT_ID;
+        return mTrackList.get(mPosition).getStreamUlr() + Constaint.CLIENT_ID;
     }
 
     public void nextSong() {

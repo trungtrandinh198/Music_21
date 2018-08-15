@@ -34,13 +34,4 @@
         app:layout_constraintLeft_toRightOf="@+id/image_avatar_track"
         app:layout_constraintTop_toBottomOf="@+id/text_name_track"
         />
-    <ImageView
-        android:layout_width="@dimen/dp_35"
-        android:layout_height="@dimen/dp_35"
-        android:layout_marginRight="@dimen/dp_20"
-        android:src="@drawable/ic_download"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 </android.support.constraint.ConstraintLayout>
